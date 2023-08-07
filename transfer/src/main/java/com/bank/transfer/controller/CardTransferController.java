@@ -3,9 +3,9 @@ package com.bank.transfer.controller;
 import com.bank.transfer.dto.CardTransferDTO;
 import com.bank.transfer.exception.NoSuchTransferException;
 import com.bank.transfer.service.CardTransferService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.List;
 //Рест контроллер для CardTransfer с аннотациями Сваггера, валидацией и c GET, POST, PATCH, DELETE методами
 @RestController
 @RequestMapping("/api/transfer")
-@Api(value = "CardTransfer Management System")
+@Tag(name = "CardTransfer Management System")
 public class CardTransferController {
 
     private final CardTransferService cardTransferService;
@@ -28,13 +28,13 @@ public class CardTransferController {
         this.cardTransferService = cardTransferService;
     }
 
-    @ApiOperation(value = "Create a new card transfer", response = CardTransferDTO.class)
+    @Operation(summary = "Create a new card transfer")
     @PostMapping("/cardTransfer")
     public CardTransferDTO createCardTransfer(@Valid @RequestBody CardTransferDTO cardTransferDTO) throws InsufficientResourcesException {
         return cardTransferService.createTransfer(cardTransferDTO);
     }
 
-    @ApiOperation(value = "Get a card transfer by Id", response = CardTransferDTO.class)
+    @Operation(summary = "Get a card transfer by Id")
     @GetMapping("/cardTransfer/{id}")
     public CardTransferDTO getCardTransferById(@PathVariable Long id) {
         if (cardTransferService.getById(id) == null) {
@@ -43,20 +43,20 @@ public class CardTransferController {
         return cardTransferService.getById(id);
     }
 
-    @ApiOperation(value = "View a list of available card transfers", response = List.class)
+    @Operation(summary = "View a list of available card transfers")
     @GetMapping("/cardTransfer")
     public ResponseEntity<?> findAll() {
         List<CardTransferDTO> cardTransferDTOList = cardTransferService.getAll();
         return ResponseEntity.ok(cardTransferDTOList);
     }
 
-    @ApiOperation(value = "Update a card transfer", response = CardTransferDTO.class)
+    @Operation(summary = "Update a card transfer")
     @PatchMapping("/cardTransfer/{id}")
     public CardTransferDTO updateCardTransfer(@PathVariable Long id, @Valid @RequestBody CardTransferDTO cardTransferDTO) {
         return cardTransferService.updateCardTransfer(id, cardTransferDTO);
     }
 
-    @ApiOperation(value = "Delete a card transfer")
+    @Operation(summary = "Delete a card transfer")
     @DeleteMapping("/cardTransfer/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCardTransfer(@PathVariable Long id) {
