@@ -29,7 +29,7 @@ public class AccountTransferServiceImpl implements AccountTransferService {
     @Override
     public AccountTransferDTO getById(Long id) {
         return accountTransferMapper.mapToDTO(accountTransferRepository.findById(id)
-                .orElseThrow(()-> new NotFoundException("Transfer not found")));
+                .orElseThrow(() -> new NotFoundException("Transfer not found")));
     }
 
     @Override
@@ -38,11 +38,11 @@ public class AccountTransferServiceImpl implements AccountTransferService {
         return accountTransfers.stream().map(accountTransferMapper::mapToDTO).collect(Collectors.toList());
     }
 
-//    У перевода можно исправить только цель
+    //    У перевода можно исправить только цель
     @Override
     public AccountTransferDTO updateAccountTransfer(Long id, AccountTransferDTO accountTransferDTO) {
         AccountTransfer accountTransfer = accountTransferRepository.findById(id)
-                .orElseThrow(()-> new NotFoundException("Transfer not found"));
+                .orElseThrow(() -> new NotFoundException("Transfer not found"));
         accountTransfer.setPurpose(accountTransferDTO.getPurpose());
         return accountTransferMapper.mapToDTO(accountTransferRepository.save(accountTransfer));
     }
@@ -50,7 +50,7 @@ public class AccountTransferServiceImpl implements AccountTransferService {
     @Override
     public void deleteAccountTransfer(Long id) {
         AccountTransfer accountTransfer = accountTransferRepository.findById(id)
-                .orElseThrow(()-> new NotFoundException("Transfer not found"));
+                .orElseThrow(() -> new NotFoundException("Transfer not found"));
         accountTransferRepository.delete(accountTransfer);
     }
 }

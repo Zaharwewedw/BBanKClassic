@@ -7,8 +7,12 @@ import java.util.List;
 
 public interface PhoneTransferService {
     PhoneTransferDTO createTransfer(PhoneTransferDTO phoneTransferDTO) throws InsufficientResourcesException;
+
     PhoneTransferDTO getById(Long id);
+
     List<PhoneTransferDTO> getAll();
+
     PhoneTransferDTO updatePhoneTransfer(Long id, PhoneTransferDTO phoneTransferDTO);
+
     void deletePhoneTransfer(Long id);
 }

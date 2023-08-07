@@ -9,8 +9,9 @@ import org.mapstruct.MappingConstants;
 //Интерфейс, который используется для преобразования между DTO и сущностью
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CardTransferMapper {
-    @Mapping(target = "id",ignore = true)
+    @Mapping(target = "id", ignore = true)
     CardTransfer mapToEntity(CardTransferDTO dto);
+
     CardTransferDTO mapToDTO(CardTransfer entity);
 
 }

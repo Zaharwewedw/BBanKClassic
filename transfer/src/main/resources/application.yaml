@@ -1,5 +1,13 @@
 spring:
   application:
-    name: transfer-app
+    name: transfer
   profiles:
     active: local
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetchRegistry: true
+    registerWithEureka: true
+
