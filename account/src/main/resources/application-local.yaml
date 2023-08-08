@@ -15,7 +15,7 @@ management:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
-    username: user
+    username: postgres
     password: password
   liquibase:
     default-schema: account
@@ -24,3 +24,6 @@ spring:
     drop-first: ${LIQUIBASE_DROP_FIRST:false}
   application:
     name: account-app
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
