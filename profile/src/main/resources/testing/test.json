@@ -1,0 +1,50 @@
+[
+  {
+    "phoneNumber": 1234567890,
+    "email": "example@example.com",
+    "nameOnCard": "John Doe",
+    "inn": 123456789012,
+    "snils": 98765432100,
+    "passport": {
+      "id": 5,
+      "series": 123,
+      "number": 456789,
+      "lastName": "Doe",
+      "firstName": "John",
+      "middleName": "Smith",
+      "gender": "M",
+      "birthDate": "1990-01-14T21:00:00.000+00:00",
+      "birthPlace": "New York",
+      "issuedBy": "Department of Records",
+      "dateOfIssue": "2023-07-30T21:00:00.000+00:00",
+      "divisionCode": 789,
+      "expirationDate": "2033-07-30T21:00:00.000+00:00",
+      "registration": {
+        "id": 8,
+        "country": "Alaska",
+        "region": null,
+        "city": null,
+        "district": null,
+        "locality": null,
+        "street": null,
+        "houseNumber": null,
+        "houseBlock": null,
+        "flatNumber": null,
+        "index": 123456
+      }
+    },
+    "actualRegistration": {
+      "id": 2,
+      "country": "Spain",
+      "region": null,
+      "city": null,
+      "district": null,
+      "locality": null,
+      "street": null,
+      "houseNumber": null,
+      "houseBlock": null,
+      "flatNumber": null,
+      "index": 500000
+    }
+  }
+]
