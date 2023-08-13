@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
@@ -18,11 +18,11 @@ public class PhoneTransfer {
     private Long id;
 
     @Column(name = "phone_number")
-    @NotBlank(message = "Number may not be blank!")
+    @NotNull(message = "Number may not be null!")
     private Long phoneNumber;
 
     @Column(name = "amount")
-    @NotBlank(message = "Amount may not be blank!")
+    @NotNull(message = "Amount may not be null!")
     private Double amount;
 
     @Column(name = "purpose")

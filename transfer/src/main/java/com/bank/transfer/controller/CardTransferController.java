@@ -30,17 +30,19 @@ public class CardTransferController {
 
     @Operation(summary = "Create a new card transfer")
     @PostMapping("/cardTransfer")
+    @ResponseStatus(HttpStatus.CREATED)
     public CardTransferDTO createCardTransfer(@Valid @RequestBody CardTransferDTO cardTransferDTO) throws InsufficientResourcesException {
         return cardTransferService.createTransfer(cardTransferDTO);
     }
 
-    @Operation(summary = "Get a card transfer by Id")
+    @Operation(summary = "Get a transfer by its ID")
     @GetMapping("/cardTransfer/{id}")
-    public CardTransferDTO getCardTransferById(@PathVariable Long id) {
-        if (cardTransferService.getById(id) == null) {
-            throw new NoSuchTransferException("There is no transfer with ID " + id + "in Database");
+    public ResponseEntity<?> findById(@PathVariable Long id) {
+        CardTransferDTO transfer = cardTransferService.getById(id);
+        if(transfer == null) {
+            throw new NoSuchTransferException("There is no transfer with this ID");
         }
-        return cardTransferService.getById(id);
+        return new ResponseEntity<>(transfer, HttpStatus.OK);
     }
 
     @Operation(summary = "View a list of available card transfers")
