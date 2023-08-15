@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 //Класс, который отвечвет за обработку исключеий всех контроллеров
 @ControllerAdvice
 public class TransferGlobalExceptionHandler {
-    @ExceptionHandler
-    private ResponseEntity<TransferIncorrectData> historyException(NoSuchTransferException e) {
+    @ExceptionHandler(NoSuchTransferException.class)
+    public ResponseEntity<TransferIncorrectData> transferException(NoSuchTransferException e) {
         TransferIncorrectData exception = new TransferIncorrectData();
         exception.setInfo(e.getMessage());
         return new ResponseEntity<>(exception, HttpStatus.NOT_FOUND);

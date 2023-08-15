@@ -1,5 +1,6 @@
 package com.bank.transfer.aop;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -12,6 +13,7 @@ import java.sql.Timestamp;
 
 //Класс, который аудирует методы сервисного слоя с записью информации в базу данных(в таблицу audit)
 @Aspect
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Component
 public class AuditAspect {
     private final JdbcTemplate jdbcTemplate;
@@ -36,14 +38,13 @@ public class AuditAspect {
     //Метод аудирует все методы сервисного слоя, где создаются новые переводы
     @Around("execution(* com.bank.transfer.service.*.create*(..))")
     public Object auditCreate(ProceedingJoinPoint joinPoint) throws Throwable {
-        Object[] args = joinPoint.getArgs();
-        Object entityToBeCreated = args[0];
-        Object createdEntity = joinPoint.proceed();
-        String entityJson = objectMapper.writeValueAsString(entityToBeCreated);
+        Object returnValue = joinPoint.proceed();
+        String entityName = getEntityName(joinPoint);
+        String entityJson = objectMapper.writeValueAsString(returnValue);
         jdbcTemplate.update("INSERT INTO transfer.audit (entity_type, operation_type, created_by, created_at, entity_json) VALUES (?, ?, ?, ?, ?)",
-                entityToBeCreated.getClass().getSimpleName(), "POST", "User", new Timestamp(System.currentTimeMillis()), entityJson);
+                entityName, "POST", "User", new Timestamp(System.currentTimeMillis()), entityJson);
 
-        return createdEntity;
+        return returnValue;
     }
 
     //Метод аудирует все методы сервисного слоя, которые показывают данные о переводах

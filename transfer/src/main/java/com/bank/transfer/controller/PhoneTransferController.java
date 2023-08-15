@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.naming.InsufficientResourcesException;
@@ -29,17 +30,19 @@ public class PhoneTransferController {
 
     @Operation(summary = "Create a new phone transfer")
     @PostMapping("/phoneTransfer")
+    @ResponseStatus(HttpStatus.CREATED)
     public PhoneTransferDTO createPhoneTransfer(@Valid @RequestBody PhoneTransferDTO phoneTransferDTO) throws InsufficientResourcesException {
         return phoneTransferService.createTransfer(phoneTransferDTO);
     }
 
-    @Operation(summary = "Get a phone transfer by Id")
+    @Operation(summary = "Get a transfer by its ID")
     @GetMapping("/phoneTransfer/{id}")
-    public PhoneTransferDTO getPhoneTransferById(@PathVariable Long id) {
-        if (phoneTransferService.getById(id) == null) {
-            throw new NoSuchTransferException("There is no transfer with ID " + id + "in Database");
+    public ResponseEntity<?> findById(@PathVariable Long id) {
+        PhoneTransferDTO transfer = phoneTransferService.getById(id);
+        if(transfer == null) {
+            throw new NoSuchTransferException("There is no transfer with this ID");
         }
-        return phoneTransferService.getById(id);
+        return new ResponseEntity<>(transfer, HttpStatus.OK);
     }
 
     @Operation(summary = "View a list of available phone transfers")

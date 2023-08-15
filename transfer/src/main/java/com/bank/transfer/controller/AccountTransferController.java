@@ -36,10 +36,11 @@ public class AccountTransferController {
     @Operation(summary = "Get a transfer by its ID")
     @GetMapping("/accountTransfer/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
-        if(accountTransferService.getById(id) == null) {
-            throw new NoSuchTransferException("There is no transfer with ID " + id + "in Database");
+        AccountTransferDTO transfer = accountTransferService.getById(id);
+        if(transfer == null) {
+            throw new NoSuchTransferException("There is no transfer with this ID");
         }
-        return new ResponseEntity<>(accountTransferService.getById(id),HttpStatus.OK);
+        return new ResponseEntity<>(transfer, HttpStatus.OK);
     }
 
     @Operation(summary = "Get all transfers")
