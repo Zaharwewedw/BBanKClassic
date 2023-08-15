@@ -1,0 +1,35 @@
+--PASSPORT JSON REQUEST--
+{
+  "id": 1,
+  "series": 123,
+  "number": 456789,
+  "lastName": "Doe",
+  "firstName": "John",
+  "middleName": "Smith",
+  "gender": "M",
+  "birthDate": "1990-01-15",
+  "birthPlace": "New York",
+  "issuedBy": "Department of Records",
+  "dateOfIssue": "2023-07-31",
+  "divisionCode": 789,
+  "expirationDate": "2033-07-31",
+  "registration": {
+    "country": "Alaska",
+    "index": 123456
+  }
+}
+
+--PROFILE JSON REQUEST--
+{
+  "phoneNumber": 1234567890,
+  "email": "example@example.com",
+  "nameOnCard": "John Doe",
+  "inn": 123456789012,
+  "snils": 98765432100,
+  "passport": {
+    "id": 12345
+  },
+  "actualRegistration": {
+    "id": 5
+  }
+}
