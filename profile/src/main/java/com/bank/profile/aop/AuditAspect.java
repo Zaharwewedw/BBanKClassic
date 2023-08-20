@@ -14,12 +14,11 @@ import java.sql.Timestamp;
 @Aspect
 @Component
 public class AuditAspect {
-
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public AuditAspect(JdbcTemplate jdbcTemplate, ObjectMapper objectMapper) {
+    public AuditAspect(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         this.objectMapper = new ObjectMapper();
     }
@@ -59,6 +58,4 @@ public class AuditAspect {
                 returnVal.getClass().getName(), "DELETE", "User", new Timestamp(System.currentTimeMillis()), objectMapper.writeValueAsString(returnVal));
         return returnVal;
     }
-
-
 }

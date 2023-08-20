@@ -12,6 +12,7 @@ import java.util.List;
 @Component
 public interface PassportMapper {
 
+
     PassportDTO passportToDTO(Passport passport);
 
     Passport DTOToPassport(PassportDTO passportDTO);

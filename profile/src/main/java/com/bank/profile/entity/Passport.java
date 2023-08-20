@@ -49,5 +49,4 @@ public class Passport {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "registration_id")
     private Registration registration;
-
 }
