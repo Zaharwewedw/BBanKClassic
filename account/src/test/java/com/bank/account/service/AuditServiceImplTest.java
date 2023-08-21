@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.OffsetDateTime;
@@ -32,8 +32,8 @@ public class AuditServiceImplTest {
                         .operationType("create")
                         .createdBy("user")
                         .build();
-        Mockito.when(auditRepository.saveAndFlush(auditEntity)).thenReturn(auditEntity);
+        when(auditRepository.saveAndFlush(auditEntity)).thenReturn(auditEntity);
         auditService.add(auditEntity);
-        Mockito.verify(auditRepository, Mockito.times(1)).saveAndFlush(auditEntity);
+        verify(auditRepository, times(1)).saveAndFlush(auditEntity);
     }
 }

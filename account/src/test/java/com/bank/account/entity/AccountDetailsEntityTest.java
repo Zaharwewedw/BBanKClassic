@@ -1,6 +1,6 @@
 package com.bank.account.entity;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -17,13 +17,13 @@ public class AccountDetailsEntityTest {
         entity.setPassportId(1L);
         entity.setNegativeBalance(false);
         entity.setProfileId(1L);
-        Assertions.assertEquals(1L, entity.getId());
-        Assertions.assertEquals(1L, entity.getAccountNumber());
-        Assertions.assertEquals(BigDecimal.valueOf(1.0), entity.getMoney());
-        Assertions.assertEquals(1L, entity.getBankDetailsId());
-        Assertions.assertEquals(1L, entity.getPassportId());
-        Assertions.assertEquals(false, entity.isNegativeBalance());
-        Assertions.assertEquals(1L, entity.getProfileId());
+        assertEquals(1L, entity.getId());
+        assertEquals(1L, entity.getAccountNumber());
+        assertEquals(BigDecimal.valueOf(1.0), entity.getMoney());
+        assertEquals(1L, entity.getBankDetailsId());
+        assertEquals(1L, entity.getPassportId());
+        assertEquals(false, entity.isNegativeBalance());
+        assertEquals(1L, entity.getProfileId());
     }
 
     @Test
@@ -56,10 +56,10 @@ public class AccountDetailsEntityTest {
                 .passportId(x)
                 .toString();
         AccountDetailsEntity entity = getSimpleEntity();
-        Assertions.assertTrue(builderToString.contains("id=1"));
-        Assertions.assertEquals(entity.getId(), newEntity.getId());
-        Assertions.assertEquals(entity.getAccountNumber(), newEntity.getAccountNumber());
-        Assertions.assertEquals(testString, newEntity.toString());
+        assertTrue(builderToString.contains("id=1"));
+        assertEquals(entity.getId(), newEntity.getId());
+        assertEquals(entity.getAccountNumber(), newEntity.getAccountNumber());
+        assertEquals(testString, newEntity.toString());
     }
 
     @Test
@@ -72,7 +72,7 @@ public class AccountDetailsEntityTest {
                 "money=1.0, " +
                 "negativeBalance=false, " +
                 "profileId=1}";
-        Assertions.assertEquals(testString, getSimpleEntity().toString());
+        assertEquals(testString, getSimpleEntity().toString());
     }
 
     private AccountDetailsEntity getSimpleEntity() {

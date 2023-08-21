@@ -2,7 +2,7 @@ package com.bank.account.factory;
 
 import com.bank.account.dto.AccountDetailsDto;
 import com.bank.account.entity.AccountDetailsEntity;
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -24,13 +24,13 @@ public class AccountDtoToEntityFactoryTest {
                 .negativeBalance(true)
                 .build();
         AccountDetailsEntity entity = factory.makeAccountDetailsEntity(dto);
-        Assertions.assertEquals(dto.getId(), entity.getId());
-        Assertions.assertEquals(dto.getAccountNumber(), entity.getAccountNumber());
-        Assertions.assertEquals(dto.getBankDetailsId(), entity.getBankDetailsId());
-        Assertions.assertEquals(dto.getPassportId(), entity.getPassportId());
-        Assertions.assertEquals(dto.getProfileId(), entity.getProfileId());
-        Assertions.assertEquals(dto.getMoney(), entity.getMoney());
-        Assertions.assertEquals(dto.isNegativeBalance(), entity.isNegativeBalance());
+        assertEquals(dto.getId(), entity.getId());
+        assertEquals(dto.getAccountNumber(), entity.getAccountNumber());
+        assertEquals(dto.getBankDetailsId(), entity.getBankDetailsId());
+        assertEquals(dto.getPassportId(), entity.getPassportId());
+        assertEquals(dto.getProfileId(), entity.getProfileId());
+        assertEquals(dto.getMoney(), entity.getMoney());
+        assertEquals(dto.isNegativeBalance(), entity.isNegativeBalance());
     }
 
     @Test
@@ -38,6 +38,6 @@ public class AccountDtoToEntityFactoryTest {
         AccountDtoToEntityFactory factory = new AccountDtoToEntityFactory();
         List<AccountDetailsDto> list = List.of(new AccountDetailsDto(), new AccountDetailsDto());
         List<AccountDetailsEntity> dtoList = factory.makeAccountDetailsEntityList(list);
-        Assertions.assertTrue(dtoList.size()==2);
+        assertTrue(dtoList.size()==2);
     }
 }

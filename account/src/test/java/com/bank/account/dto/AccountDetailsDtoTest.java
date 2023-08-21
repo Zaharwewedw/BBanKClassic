@@ -1,6 +1,6 @@
 package com.bank.account.dto;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -29,13 +29,13 @@ public class AccountDetailsDtoTest {
         dto.setPassportId(x);
         dto.setNegativeBalance(true);
         dto.setProfileId(x);
-        Assertions.assertTrue(dtoString.contains(testString));
-        Assertions.assertEquals(x, dto.getBankDetailsId());
-        Assertions.assertEquals(x, dto.getId());
-        Assertions.assertEquals(x, dto.getAccountNumber());
-        Assertions.assertEquals(x, dto.getProfileId());
-        Assertions.assertEquals(x, dto.getPassportId());
-        Assertions.assertEquals(BigDecimal.valueOf(1.0), dto.getMoney());
-        Assertions.assertTrue(dto.isNegativeBalance());
+        assertTrue(dtoString.contains(testString));
+        assertEquals(x, dto.getBankDetailsId());
+        assertEquals(x, dto.getId());
+        assertEquals(x, dto.getAccountNumber());
+        assertEquals(x, dto.getProfileId());
+        assertEquals(x, dto.getPassportId());
+        assertEquals(BigDecimal.valueOf(1.0), dto.getMoney());
+        assertTrue(dto.isNegativeBalance());
     }
 }

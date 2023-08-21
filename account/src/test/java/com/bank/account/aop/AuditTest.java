@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -29,30 +29,30 @@ public class AuditTest {
     @Test
     void shouldAddMethodAuditTest() throws Throwable {
         AccountDetailsEntity entity = new AccountDetailsEntity();
-        Mockito.when(jp.proceed()).thenReturn(entity);
+        when(jp.proceed()).thenReturn(entity);
         audit.addMethodAudit(jp);
-        Mockito.verify(jp, Mockito.times(1)).proceed();
-        Mockito.verify(auditService, Mockito.times(1)).add(Mockito.any());
+        verify(jp, times(1)).proceed();
+        verify(auditService, times(1)).add(any());
     }
 
     @Test
     void shouldDeleteMethodAuditTest() throws Throwable {
         AccountDetailsEntity entity = new AccountDetailsEntity();
-        Mockito.when(jp.proceed()).thenReturn(entity);
+        when(jp.proceed()).thenReturn(entity);
         audit.deleteMethodAudit(jp);
-        Mockito.verify(jp, Mockito.times(1)).proceed();
-        Mockito.verify(auditService, Mockito.times(1)).add(Mockito.any());
+        verify(jp, times(1)).proceed();
+        verify(auditService, times(1)).add(any());
     }
 
     @Test
     void shouldUpdateMethodAuditTest() throws Throwable {
         AccountDetailsEntity entity = new AccountDetailsEntity();
-        Mockito.when(jp.getArgs()).thenReturn(new AccountDetailsEntity[]{AccountDetailsEntity.builder().id(1L).build()});
-        Mockito.when(jp.proceed()).thenReturn(entity);
-        Mockito.when(accountDetailsService.getAccountDetailsById(1L)).thenReturn(AccountDetailsEntity.builder().id(1L).build());
+        when(jp.getArgs()).thenReturn(new AccountDetailsEntity[]{AccountDetailsEntity.builder().id(1L).build()});
+        when(jp.proceed()).thenReturn(entity);
+        when(accountDetailsService.getAccountDetailsById(1L)).thenReturn(AccountDetailsEntity.builder().id(1L).build());
         audit.updateMethodAudit(jp);
-        Mockito.verify(jp, Mockito.times(1)).proceed();
-        Mockito.verify(auditService, Mockito.times(1)).add(Mockito.any());
-        Mockito.verify(jp, Mockito.times(1)).getArgs();
+        verify(jp, times(1)).proceed();
+        verify(auditService, times(1)).add(any());
+        verify(jp, times(1)).getArgs();
     }
 }

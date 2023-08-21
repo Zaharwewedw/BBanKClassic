@@ -2,7 +2,7 @@ package com.bank.account.factory;
 
 import com.bank.account.dto.AccountDetailsDto;
 import com.bank.account.entity.AccountDetailsEntity;
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,6 +13,6 @@ public class AccountDetailsToDtoFactoryTest {
         AccountDetailsToDtoFactory factory = new AccountDetailsToDtoFactory();
         List<AccountDetailsEntity> list = List.of(new AccountDetailsEntity(), new AccountDetailsEntity());
         List<AccountDetailsDto> dtoList = factory.makeAccountDetailsDtoList(list);
-        Assertions.assertTrue(dtoList.size()==2);
+        assertTrue(dtoList.size()==2);
     }
 }
