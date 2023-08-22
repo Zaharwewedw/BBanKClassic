@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
@@ -16,8 +15,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class PassportServiceImplTest {
@@ -57,7 +55,7 @@ class PassportServiceImplTest {
     void add() {
         Passport passport = new Passport();
         passportService.add(passport);
-        verify(passportRepo, Mockito.times(1)).save(passport);
+        verify(passportRepo, times(1)).save(passport);
     }
 
     @Test
@@ -74,8 +72,8 @@ class PassportServiceImplTest {
         when(passportRepo.save(updatedPassport)).thenReturn(updatedPassport);
 
         passportService.update(id, updatedPassport);
-        verify(passportRepo, Mockito.times(1)).findById(id);
-        verify(passportRepo, Mockito.times(1)).save(updatedPassport);
+        verify(passportRepo, times(1)).findById(id);
+        verify(passportRepo, times(1)).save(updatedPassport);
     }
 
     @Test
@@ -94,7 +92,7 @@ class PassportServiceImplTest {
 
         passportService.deleteById(id);
 
-        verify(passportRepo, Mockito.times(1)).findById(id);
-        verify(passportRepo, Mockito.times(1)).deleteById(id);
+        verify(passportRepo, times(1)).findById(id);
+        verify(passportRepo, times(1)).deleteById(id);
     }
 }

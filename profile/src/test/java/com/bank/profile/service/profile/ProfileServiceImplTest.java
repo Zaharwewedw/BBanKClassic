@@ -13,14 +13,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ProfileServiceImplTest {
@@ -79,8 +78,8 @@ class ProfileServiceImplTest {
 
         profileService.add(profile);
 
-        Mockito.verify(actualRegistrationRepo, Mockito.times(1)).findById(id);
-        Mockito.verify(passportRepo, Mockito.times(1)).findById(id);
+        verify(actualRegistrationRepo, times(1)).findById(id);
+        verify(passportRepo, times(1)).findById(id);
     }
 
     @Test
@@ -93,8 +92,8 @@ class ProfileServiceImplTest {
 
         profileService.update(id, updatedProfile);
 
-        Mockito.verify(profileRepo, Mockito.times(1)).findById(id);
-        Mockito.verify(profileRepo, Mockito.times(1)).save(updatedProfile);
+        verify(profileRepo, times(1)).findById(id);
+        verify(profileRepo, times(1)).save(updatedProfile);
     }
 
     @Test
@@ -112,8 +111,8 @@ class ProfileServiceImplTest {
 
         profileService.deleteById(id);
 
-        Mockito.verify(profileRepo, Mockito.times(1)).findById(id);
-        Mockito.verify(profileRepo, Mockito.times(1)).deleteById(id);
+        verify(profileRepo, times(1)).findById(id);
+        verify(profileRepo, times(1)).deleteById(id);
     }
 
     @Test

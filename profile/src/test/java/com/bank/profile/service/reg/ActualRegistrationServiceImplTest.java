@@ -1,24 +1,19 @@
 package com.bank.profile.service.reg;
 
 import com.bank.profile.entity.ActualRegistration;
-import com.bank.profile.entity.Registration;
 import com.bank.profile.exception.ActualRegistrationNotFoundException;
-import com.bank.profile.exception.RegistrationNotFoundException;
 import com.bank.profile.repo.ActualRegistrationRepo;
-import com.bank.profile.repo.RegistrationRepo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ActualRegistrationServiceImplTest {
@@ -58,7 +53,7 @@ class ActualRegistrationServiceImplTest {
     void add() {
         ActualRegistration newRegistration = new ActualRegistration();
         registrationService.add(newRegistration);
-        verify(registrationRepo, Mockito.times(1)).save(newRegistration);
+        verify(registrationRepo, times(1)).save(newRegistration);
     }
 
     @Test
@@ -72,8 +67,8 @@ class ActualRegistrationServiceImplTest {
 
         registrationService.update(id, updatedRegistration);
 
-        verify(registrationRepo, Mockito.times(1)).findById(id);
-        verify(registrationRepo, Mockito.times(1)).save(updatedRegistration);
+        verify(registrationRepo, times(1)).findById(id);
+        verify(registrationRepo, times(1)).save(updatedRegistration);
     }
 
     @Test
@@ -91,7 +86,7 @@ class ActualRegistrationServiceImplTest {
         when(registrationRepo.findById(id)).thenReturn(Optional.of(deletedRegistration));
 
         registrationService.deleteById(id);
-        verify(registrationRepo, Mockito.times(1)).findById(id);
-        verify(registrationRepo, Mockito.times(1)).deleteById(id);
+        verify(registrationRepo, times(1)).findById(id);
+        verify(registrationRepo, times(1)).deleteById(id);
     }
 }
