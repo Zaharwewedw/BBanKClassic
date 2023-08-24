@@ -4,6 +4,7 @@ import com.bank.profile.entity.ActualRegistration;
 import com.bank.profile.entity.Passport;
 import com.bank.profile.entity.Profile;
 import com.bank.profile.exception.AccountDetailsNotFoundException;
+import com.bank.profile.exception.ActualRegistrationNotFoundException;
 import com.bank.profile.exception.PassportNotFoundException;
 import com.bank.profile.exception.ProfileNotFoundException;
 import com.bank.profile.repo.ActualRegistrationRepo;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
+
 
     private final ProfileRepo profileRepo;
     private final PassportRepo passportRepo;
@@ -44,7 +46,7 @@ public class ProfileServiceImpl implements ProfileService {
         Long regId = profile.getActualRegistration().getId();
 
         Passport passport = passportRepo.findById(passportId).orElseThrow(()-> new PassportNotFoundException(String.format("Passport with id %d not found", passportId)));
-        ActualRegistration actualRegistration = actualRegRepo.findById(regId).orElseThrow(()-> new AccountDetailsNotFoundException(String.format("ActualRegistration with id %d not found", regId)));
+        ActualRegistration actualRegistration = actualRegRepo.findById(regId).orElseThrow(()-> new ActualRegistrationNotFoundException(String.format("ActualRegistration with id %d not found", regId)));
 
         profile.setPassport(passport);
         profile.setActualRegistration(actualRegistration);

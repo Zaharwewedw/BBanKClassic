@@ -43,8 +43,4 @@ public class Profile {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "actual_registration_id")
     private ActualRegistration actualRegistration;
-
-
-
-
 }

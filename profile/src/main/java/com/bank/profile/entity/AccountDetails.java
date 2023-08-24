@@ -19,5 +19,4 @@ public class AccountDetails {
     @ManyToOne
     @JoinColumn(name = "profile_id")
     private Profile profile;
-
 }

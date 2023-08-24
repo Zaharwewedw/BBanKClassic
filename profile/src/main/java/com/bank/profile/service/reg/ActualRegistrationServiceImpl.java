@@ -2,7 +2,6 @@ package com.bank.profile.service.reg;
 
 import com.bank.profile.entity.ActualRegistration;
 import com.bank.profile.exception.ActualRegistrationNotFoundException;
-import com.bank.profile.exception.ProfileNotFoundException;
 import com.bank.profile.repo.ActualRegistrationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -3,7 +3,6 @@ package com.bank.profile.service.passport;
 import com.bank.profile.entity.Passport;
 import com.bank.profile.entity.Registration;
 import com.bank.profile.exception.PassportNotFoundException;
-import com.bank.profile.mapper.PassportMapper;
 import com.bank.profile.repo.PassportRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
